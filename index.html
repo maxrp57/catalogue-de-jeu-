@@ -217,22 +217,6 @@
     .game-tile[aria-pressed="true"] .tile-art { border-color: transparent; }
     .game-tile[aria-pressed="true"] .tile-art img { padding: 7px; }
 
-    .tile-title {
-      display: block;
-      overflow: hidden;
-      padding: 8px 7px 5px;
-      color: #c5cede;
-      font-size: .75rem;
-      font-weight: 620;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .game-tile[aria-pressed="true"] .tile-title {
-      color: #fff;
-      font-size: .83rem;
-    }
-
     .wallpaper {
       position: relative;
       display: flex;
@@ -485,8 +469,6 @@
       .games { gap: 9px; }
       .game-tile { flex-basis: 84px; }
       .game-tile[aria-pressed="true"] { flex-basis: 105px; }
-      .tile-title { font-size: .68rem; }
-      .game-tile[aria-pressed="true"] .tile-title { font-size: .74rem; }
       .wallpaper {
         min-height: 365px;
         margin: 3px -15px 16px;
@@ -520,8 +502,7 @@
       <span class="brand-name">Game Center</span>
     </a>
     <nav class="nav-links" aria-label="Navigation principale">
-      <a href="#accueil" aria-current="page">Jeux</a>
-      <a href="#bibliotheque">Bibliothèque</a>
+      <a href="#bibliotheque" aria-current="page">Bibliothèque</a>
     </nav>
     <label class="topbar-search">
       <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none">
@@ -535,7 +516,7 @@
   <main id="accueil">
     <section aria-labelledby="games-heading">
       <div class="section-heading">
-        <h1 id="games-heading">Jeux</h1>
+        <h1 id="games-heading">Bibliothèque</h1>
         <p class="count" id="count" aria-live="polite"></p>
       </div>
       <div class="games" id="games" role="group" aria-label="Sélectionner un jeu"></div>
@@ -678,10 +659,7 @@
         marquerImageManquante(image, visuel, jeu.title);
         visuel.append(image);
 
-        const titre = document.createElement("span");
-        titre.className = "tile-title";
-        titre.textContent = jeu.title;
-        tuile.append(visuel, titre);
+        tuile.append(visuel);
         tuile.addEventListener("keydown", event => {
           if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
           const tuiles = [...grille.querySelectorAll(".game-tile")];
